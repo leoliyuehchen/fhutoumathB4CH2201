@@ -55,7 +55,7 @@
     }
 
     /* --- 九宮格 --- */
-    .grid-wrapper { position: relative; margin: 0 auto; width: 100%; max-width: 500px; flex-shrink: 0;}
+    .grid-wrapper { position: relative; margin: 0 auto; width: 100%; max-width: 480px; flex-shrink: 0;}
     .nine-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 12px; width: 100%; position: relative; padding: 14px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; z-index: 2;
@@ -95,7 +95,7 @@
     .error-anim { animation: shake 0.4s; }
     @keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
 
-    /* 驗證高亮 */
+    /* 驗證高亮 (Outline 不覆蓋底色) */
     .val-hl-purple { outline: 4px solid #9333ea !important; outline-offset: 2px; transform: scale(1.03); z-index: 15; box-shadow: 0 0 15px rgba(147, 51, 234, 0.6); }
     .val-hl-blue { outline: 4px solid #2563eb !important; outline-offset: 2px; transform: scale(1.03); z-index: 15; box-shadow: 0 0 15px rgba(37, 99, 235, 0.6); }
     .val-hl-green { outline: 4px solid #10b981 !important; outline-offset: 2px; transform: scale(1.03); z-index: 15; box-shadow: 0 0 15px rgba(16, 185, 129, 0.6); }
@@ -105,16 +105,16 @@
     .hint-highlight { outline: 4px solid #1e293b !important; outline-offset: 2px; transform: scale(1.04); z-index: 18; box-shadow: 0 0 20px rgba(0,0,0,0.3); }
     .highlight-ans { transform: scale(1.08); outline: 4px solid #10b981 !important; outline-offset: 2px; z-index: 25; box-shadow: 0 0 25px rgba(16, 185, 129, 0.5); }
 
-    /* --- 動態等號與加號 (使用參考範本的百分比定位) --- */
+    /* --- 動態等號與加號 (無背景純文字，精準置中定位) --- */
     .math-sign {
-      position: absolute; font-size: 2.8rem; font-weight: 900; color: #db2777;
+      position: absolute; font-size: 3.2rem; font-weight: 900; color: #db2777;
       display: flex; justify-content: center; align-items: center;
-      z-index: 20; opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      text-shadow: 0 0 8px white, 0 0 15px white, 0 0 20px white;
-      transform: translate(-50%, -50%);
+      z-index: 20; opacity: 0; pointer-events: none; transition: all 0.3s ease;
+      text-shadow: 0 0 10px white, 0 0 15px white, 0 0 20px white;
+      transform: translate(-50%, -50%); /* 關鍵置中！確保指定的 left/top 就是中心點 */
     }
     .math-sign.active { opacity: 1; }
-    /* 垂直等號轉 90 度，確保仍保持居中偏移 */
+    /* 垂直等號轉 90 度 */
     .rotate-90 { transform: translate(-50%, -50%) rotate(90deg) !important; }
     
     /* 打勾徽章 */
@@ -147,7 +147,7 @@
     .btn-hint { background: #fef08a; color: #9a3412; border: 1px solid #fde047; font-size: 0.8rem; padding: 4px 8px; }
     .btn-hint:hover:not(:disabled) { background: #fde047; color: #713f12; }
     
-    /* 11視角按鈕緊湊設計 */
+    /* 11大視角按鈕緊湊設計 */
     .val-btn { font-size: 0.85rem; padding: 6px 4px; border-width: 1.5px; border-radius: 8px; width: 100%; text-align: center; background: white; font-weight: bold; transition: all 0.2s; cursor: pointer; }
   </style>
 </head>
@@ -268,9 +268,9 @@
     function scrollLeftToBottom() { setTimeout(() => { const area = document.getElementById('leftPanel'); area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' }); }, 150); }
     function cleanHtml(str) { return str.replace(/<[^>]*>?/gm, ''); }
 
-    // --- 題庫定義 ---
+    // --- 題庫定義 (U 統一替換為 S) ---
     const LBL_GLASS = [
-      ["全班總數<br>(U)", "男生<br>(A)", "女生<br>(A')"],
+      ["全班總數<br>(S)", "男生<br>(A)", "女生<br>(A')"],
       ["戴眼鏡的學生<br>(B)", "男生有戴眼鏡<br><span class='text-xs'>(A ∩ B)</span>", "女生有戴眼鏡<br><span class='text-xs'>(A' ∩ B)</span>"],
       ["沒戴眼鏡的學生<br>(B')", "男生沒戴眼鏡<br><span class='text-xs'>(A ∩ B')</span>", "女生沒戴眼鏡<br><span class='text-xs'>(A' ∩ B')</span>"]
     ];
@@ -285,8 +285,8 @@
     const STATIC_PROBLEMS = {
       "S18": {
         type: "NORMAL", context: "投擲兩顆公正的骰子一次 (總共 36 種結果)。", manualStep1: true,
-        task1Hint: "<b>💡 提示：</b>請親自計算並填寫下列事件的數量：<br>• 所有結果 (U)：36 種<br>• 點數和為 10 (B)：{(4,6), (5,5), (6,4)}<br>• 點數相同 (A)：{(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)}<br>• 和10且相同 (A ∩ B)：{(5,5)}",
-        labels: [ ["所有結果 (U)", "點數相同 (A)", "點數不同 (A')"], ["點數和為 10 (B)", "和10且相同<br><span class='text-xs'>(A ∩ B)</span>", "和10且不同<br><span class='text-xs'>(A' ∩ B)</span>"], ["點數和不為10 (B')", "不為10且相同<br><span class='text-xs'>(A ∩ B')</span>", "不為10且不同<br><span class='text-xs'>(A' ∩ B')</span>"] ], 
+        task1Hint: "<b>💡 提示：</b>請親自計算並填寫下列事件的數量：<br>• 所有結果 (S)：36 種<br>• 點數和為 10 (B)：{(4,6), (5,5), (6,4)}<br>• 點數相同 (A)：{(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)}<br>• 和10且相同 (A ∩ B)：{(5,5)}",
+        labels: [ ["所有結果 (S)", "點數相同 (A)", "點數不同 (A')"], ["點數和為 10 (B)", "和10且相同<br><span class='text-xs'>(A ∩ B)</span>", "和10且不同<br><span class='text-xs'>(A' ∩ B)</span>"], ["點數和不為10 (B')", "不為10且相同<br><span class='text-xs'>(A ∩ B')</span>", "不為10且不同<br><span class='text-xs'>(A' ∩ B')</span>"] ], 
         data: [ [36, 6, 30], [3, 1, 2], [33, 5, 28] ], knowns: [[0,0], [1,0], [0,1], [1,1]], 
         questions: [ { text: "在「出現點數和為 10」的條件下，試求「兩顆骰子點數相同」的機率。", cR: 1, cC: 0, nR: 1, nC: 1, targetSet: "A", condSet: "B", condShort: "點數和為10", targetShort: "點數相同", crossShort: "和為10且相同", condPrompt: "點數和為10(B)", numPrompt: "這裡面點數相同的" } ]
       },
@@ -339,10 +339,10 @@
       return {
         type: "ABSTRACT",
         context: `設 \\(A\\)、\\(B\\) 為樣本空間 \\(S\\) 中的二事件，若 \\(P(A)=${getFracStr(nA, lcm)}\\)，\\(P(B)=${getFracStr(nB, lcm)}\\)，\\(P(A \\cup B)=${getFracStr(nUnion, lcm)}\\)。`,
-        labels: [ ["總數 (U)", "事件 A", "事件 A'"], ["事件 B", "A ∩ B", "A' ∩ B"], ["事件 B'", "A ∩ B'", "A' ∩ B'"] ],
+        labels: [ ["總數 (S)", "事件 A", "事件 A'"], ["事件 B", "A ∩ B", "A' ∩ B"], ["事件 B'", "A ∩ B'", "A' ∩ B'"] ],
         data: [ [lcm, nA, lcm - nA], [nB, nIntersect, nB - nIntersect], [lcm - nB, nA - nIntersect, lcm - nUnion] ], knowns: [[0,0], [0,1], [1,0], [2,2]],
         fracData: [ 
-            { label: "總數 \\(P(U)\\)", orig: "1", num: lcm, r: 0, c: 0 }, 
+            { label: "總數 \\(P(S)\\)", orig: "1", num: lcm, r: 0, c: 0 }, 
             { label: "事件 A", orig: getFracStr(nA, lcm), num: nA, r: 0, c: 1 }, 
             { label: "事件 B", orig: getFracStr(nB, lcm), num: nB, r: 1, c: 0 }, 
             { label: "\\(P(A' \\cap B')\\)", orig: `1 - ${getFracStr(nUnion, lcm)}`, num: lcm - nUnion, r: 2, c: 2 } 
@@ -458,7 +458,7 @@
 
     // --- 集合點選模式 (SETS) ---
     function renderSetSteps() {
-      document.getElementById('setWatchList').innerHTML = `<li><span class="font-bold text-slate-800">樣本空間 $U$</span><br> = { ${currentProbMeta.setSpace.join(', ')} }</li>`;
+      document.getElementById('setWatchList').innerHTML = `<li><span class="font-bold text-slate-800">樣本空間 $S$</span><br> = { ${currentProbMeta.setSpace.join(', ')} }</li>`;
       renderSetSelection(getStepId(), getStepTitle(`求事件 A`), currentProbMeta.eventA_name, currentProbMeta.eventA_ans, 
         () => { 
             document.getElementById('setWatchList').innerHTML += `<li><span class="font-bold text-blue-700">事件 A：${currentProbMeta.eventA_name}</span><br> = { ${currentProbMeta.eventA_ans.map(i=>currentProbMeta.setSpace[i]).join(', ')} }</li>`;
@@ -748,9 +748,9 @@
        const u = currentData[0][0], a = currentData[0][1], aP = currentData[0][2], b = currentData[1][0], bP = currentData[2][0];
        const c1 = currentData[1][1], c2 = currentData[1][2], c3 = currentData[2][1], c4 = currentData[2][2];
        
-       if(type===1) { document.getElementById('cell-0-0').classList.add('val-hl-purple'); msg.innerHTML = `總計區 $U = ${u}$`; }
-       if(type===2) { document.getElementById('cell-0-0').classList.add('val-hl-purple'); document.getElementById('cell-0-1').classList.add('val-hl-blue'); document.getElementById('cell-0-2').classList.add('val-hl-blue'); msg.innerHTML = `$U = A + A' \\rightarrow ${u} = ${a} + ${aP}$`; }
-       if(type===3) { document.getElementById('cell-0-0').classList.add('val-hl-purple'); document.getElementById('cell-1-0').classList.add('val-hl-blue'); document.getElementById('cell-2-0').classList.add('val-hl-blue'); msg.innerHTML = `$U = B + B' \\rightarrow ${u} = ${b} + ${bP}$`; }
+       if(type===1) { document.getElementById('cell-0-0').classList.add('val-hl-purple'); msg.innerHTML = `總計區 $S = ${u}$`; }
+       if(type===2) { document.getElementById('cell-0-0').classList.add('val-hl-purple'); document.getElementById('cell-0-1').classList.add('val-hl-blue'); document.getElementById('cell-0-2').classList.add('val-hl-blue'); msg.innerHTML = `$S = A + A' \\rightarrow ${u} = ${a} + ${aP}$`; }
+       if(type===3) { document.getElementById('cell-0-0').classList.add('val-hl-purple'); document.getElementById('cell-1-0').classList.add('val-hl-blue'); document.getElementById('cell-2-0').classList.add('val-hl-blue'); msg.innerHTML = `$S = B + B' \\rightarrow ${u} = ${b} + ${bP}$`; }
        if(type===4) { document.getElementById('cell-0-0').classList.add('val-hl-purple'); document.getElementById('cell-1-1').classList.add('val-hl-blue'); document.getElementById('cell-1-2').classList.add('val-hl-blue'); document.getElementById('cell-2-1').classList.add('val-hl-blue'); document.getElementById('cell-2-2').classList.add('val-hl-blue'); msg.innerHTML = `核心四區 $\\rightarrow ${u} = ${c1} + ${c2} + ${c3} + ${c4}$`; }
        if(type===5) { document.getElementById('cell-1-1').classList.add('val-hl-green'); msg.innerHTML = `完全符合 (交集) $= ${c1}$`; }
        if(type===6) { document.getElementById('cell-1-2').classList.add('val-hl-orange'); document.getElementById('cell-2-1').classList.add('val-hl-orange'); msg.innerHTML = `僅一符合 $= ${c2} + ${c3}$`; }
