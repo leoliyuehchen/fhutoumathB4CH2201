@@ -19,15 +19,27 @@
       color: #1e293b; height: 100vh; overflow: hidden;
     }
 
-    /* --- 頂部導覽區 (左中右三欄排版) --- */
+    /* --- 頂部導覽區 (終極投影平衡版) --- */
     .top-header {
       flex-shrink: 0; background: rgba(255, 255, 255, 0.95);
-      border-bottom: 3px solid #3b82f6; padding: 12px 24px;
-      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15); z-index: 50; 
-      display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      border-bottom: 4px solid #3b82f6; padding: 16px 24px;
+      box-shadow: 0 5px 15px rgba(59, 130, 246, 0.15); z-index: 50; 
+      display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;
     }
-    .app-title { font-size: 1.5rem; font-weight: 900; color: #1e40af; letter-spacing: 0.05em; margin: 0; line-height: 1.2; text-align: center; flex-shrink: 0;}
     
+    /* 巨大化且置中的標題區 */
+    .app-title-container { flex: 1; display: flex; justify-content: center; align-items: center; max-width: 320px;}
+    .app-title { font-size: 3.5rem; font-weight: 900; color: #1e40af; letter-spacing: 0.1em; margin: 0; line-height: 1.1; text-align: center; text-shadow: 2px 2px 0 white, 4px 4px 0 rgba(59, 130, 246, 0.1);}
+    
+    /* 中間公式區 (適度縮小) */
+    .theory-box { flex: 1; display: flex; justify-content: center; align-items: center;}
+    .theory-content { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .core-title { font-size: 1rem; color: #64748b; font-weight: bold; text-transform: uppercase; letter-spacing: 0.1rem;}
+    .formula-display { display: inline-block; bg: #ffffff; px: 5; py: 2; border-radius: 12px; border: 2px solid #93c5fd; font-weight: bold; ml: 2; font-size: 1.25rem; color: #1e293b; box-shadow: inner 0 2px 4px rgba(0,0,0,0.05);}
+
+    /* 右側秘訣區 (調整文字適中) */
+    .hint-box { flex: 1; text-[0.9rem] text-blue-800 bg-blue-100 px-6 py-2.5 rounded-2xl font-bold border border-blue-200 shadow-sm leading-relaxed whitespace-nowrap text-left; max-width: 480px;}
+
     /* --- 雙欄佈局核心 --- */
     .app-wrapper { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
     .content-wrapper { flex: 1; display: flex; flex-direction: column; overflow: hidden; max-width: 1600px; margin: 0 auto; width: 100%; position: relative; }
@@ -48,7 +60,7 @@
     .problem-card {
       background: #ffffff; border-left: 8px solid #3b82f6; border-radius: 12px;
       padding: 20px; box-shadow: 0 4px 8px rgba(59, 130, 246, 0.15);
-      font-size: 1.3rem; line-height: 1.8; margin-bottom: 24px; color: #1e293b; font-weight: 600;
+      font-size: 1.2rem; line-height: 1.7; margin-bottom: 24px; color: #1e293b; font-weight: 600;
       flex-shrink: 0;
     }
 
@@ -129,38 +141,46 @@
     @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
     .step-card.done { opacity: 0.8; border-color: #e2e8f0; box-shadow: none; }
     .step-card.done::before { background: #94a3b8; }
-    .step-title { font-size: 1.5rem; font-weight: 900; color: #1e3a8a; margin-bottom: 16px; border-bottom: 3px solid #e2e8f0; padding-bottom: 12px; display: flex; align-items: center; gap: 12px; transition: all 0.3s;}
+    .step-title { font-size: 1.4rem; font-weight: 900; color: #1e3a8a; margin-bottom: 16px; border-bottom: 3px solid #e2e8f0; padding-bottom: 12px; display: flex; align-items: center; gap: 12px; transition: all 0.3s;}
     .step-title-num { background: #3b82f6; color: white; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
 
     .input-box { width: 90px; text-align: center; border: 3px solid #cbd5e1; border-radius: 10px; padding: 10px; font-size: 1.6rem; font-weight: bold; color: #0f172a; outline: none; transition: all 0.2s; background: #f8fafc; }
     .input-box:focus { border-color: #ec4899; box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.25); transform: scale(1.05); background: white; }
     .input-box:disabled { background-color: #f1f5f9; color: #64748b; border-color: #e2e8f0; transform: none; box-shadow: none; }
 
-    .btn { padding: 10px 18px; border-radius: 10px; font-weight: bold; cursor: pointer; border: none; transition: all 0.2s; font-size: 1.2rem; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+    .btn { padding: 8px 16px; border-radius: 10px; font-weight: bold; cursor: pointer; border: none; transition: all 0.2s; font-size: 1.1rem; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
     .btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .btn-check { background: #ec4899; color: white; box-shadow: 0 4px 8px rgba(236, 72, 153, 0.25); }
     .btn-check:hover:not(:disabled) { background: #db2777; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(236, 72, 153, 0.35); }
-    .btn-main { background: #3b82f6; color: white; width: 100%; padding: 16px; font-size: 1.4rem; border-radius: 12px; box-shadow: 0 6px 15px rgba(59, 130, 246, 0.35); }
+    .btn-main { background: #3b82f6; color: white; width: 100%; padding: 14px; font-size: 1.3rem; border-radius: 12px; box-shadow: 0 6px 15px rgba(59, 130, 246, 0.35); }
     .btn-main:hover:not(:disabled) { background: #2563eb; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.45); }
-    .btn-hint { background: #fef08a; color: #9a3412; border: 2px solid #fde047; font-size: 1.1rem; padding: 6px 12px; }
+    .btn-hint { background: #fef08a; color: #9a3412; border: 2px solid #fde047; font-size: 1.05rem; padding: 6px 12px; }
     .btn-hint:hover:not(:disabled) { background: #fde047; color: #713f12; }
     
-    /* 11大視角按鈕 */
-    .val-btn { font-size: 1.05rem; padding: 8px 4px; border-width: 2px; border-radius: 10px; width: 100%; text-align: center; background: white; font-weight: bold; transition: all 0.2s; cursor: pointer; }
+    /* 11大視角按鈕 (調整字體適中) */
+    .val-btn { font-size: 1rem; padding: 8px 4px; border-width: 2px; border-radius: 10px; width: 100%; text-align: center; background: white; font-weight: bold; transition: all 0.2s; cursor: pointer; }
+    
+    /* SETS模式顯示 (字體微調) */
+    .sets-list-item { font-size: 1.15rem; }
+    .sets-list-name { font-weight: black; text-xl; }
   </style>
 </head>
 <body>
 
 <div class="app-wrapper">
   <div class="top-header">
-    <h1 class="app-title">條件<br>機率</h1>
-    <div class="flex-1 flex justify-center items-center">
-        <div class="flex items-center">
-            <span class="text-slate-600 font-black text-[1.15rem]">核心概念：</span>
-            <span class="inline-block bg-blue-50 px-4 py-1.5 rounded-xl border border-blue-200 font-bold ml-2 text-[1.3rem]">$$P(B|A) = \frac{n(A \cap B)}{n(A)}$$</span>
-        </div>
+    <div class="app-title-container">
+        <h1 class="app-title">條件<br>機率</h1>
     </div>
-    <div class="text-[0.95rem] text-blue-800 bg-blue-100 px-5 py-2 rounded-xl font-bold border border-blue-200 shadow-sm leading-relaxed whitespace-nowrap text-left">
+    
+    <div class="theory-box" id="theoryBox">
+      <div class="theory-content">
+        <span class="core-title">核心概念 Formula</span>
+        <span class="formula-display">$$P(B|A) = \frac{n(A \cap B)}{n(A)}$$</span>
+      </div>
+    </div>
+    
+    <div class="hint-box">
       💡 秘訣：找出「條件」所在行列當分母，<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格子裡的「交集」就是分子！
     </div>
   </div>
@@ -180,11 +200,11 @@
           <div class="text-center font-black text-slate-800 mb-4 pb-3 border-b-2 border-slate-100 text-2xl flex justify-center items-center gap-3">
             <span class="text-3xl">👁️</span> 九宮格全知之眼
           </div>
-          <div class="text-base text-center text-slate-500 mb-5 font-bold">您可以隨時點擊下方按鍵，觀察盤面數據的邏輯組成。</div>
+          <div class="text-[1.1rem] text-center text-slate-500 mb-5 font-bold">您可以隨時點擊下方按鍵，觀察盤面數據的邏輯組成。</div>
           
           <div class="flex flex-col gap-5">
               <div>
-                <div class="text-[1rem] font-black text-purple-700 mb-2.5 flex items-center gap-2"><span class="bg-purple-100 text-purple-800 px-2 py-0.5 rounded-lg">A</span> 殊途同歸 (四重視角)</div>
+                <div class="text-[1.1rem] font-black text-purple-700 mb-2.5 flex items-center gap-2"><span class="bg-purple-100 text-purple-800 px-2 py-0.5 rounded-lg">A</span> 殊途同歸 (四重視角)</div>
                 <div class="grid grid-cols-4 gap-2.5">
                     <button class="val-btn border-purple-300 text-purple-700 hover:bg-purple-50" onclick="showVal(1)">1. 總計</button>
                     <button class="val-btn border-blue-300 text-blue-700 hover:bg-blue-50" onclick="showVal(2)">2. A+A'</button>
@@ -194,7 +214,7 @@
               </div>
               
               <div>
-                <div class="text-[1rem] font-black text-teal-700 mb-2.5 flex items-center gap-2"><span class="bg-teal-100 text-teal-800 px-2 py-0.5 rounded-lg">B</span> 視覺流向</div>
+                <div class="text-[1.1rem] font-black text-teal-700 mb-2.5 flex items-center gap-2"><span class="bg-teal-100 text-teal-800 px-2 py-0.5 rounded-lg">B</span> 視覺流向</div>
                 <div class="grid grid-cols-3 gap-2.5">
                     <button class="val-btn border-green-300 text-green-700 hover:bg-green-50" onclick="showVal(5)">完全符合</button>
                     <button class="val-btn border-orange-300 text-orange-700 hover:bg-orange-50" onclick="showVal(6)">僅一符合</button>
@@ -203,12 +223,12 @@
               </div>
 
               <div>
-                <div class="text-[1rem] font-black text-indigo-700 mb-2.5 flex items-center gap-2"><span class="bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded-lg">C</span> 聯集區域 (注意打勾來源)</div>
+                <div class="text-[1.1rem] font-black text-indigo-700 mb-2.5 flex items-center gap-2"><span class="bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded-lg">C</span> 聯集區域 (注意打勾來源)</div>
                 <div class="grid grid-cols-4 gap-2.5">
-                    <button class="val-btn border-indigo-300 text-indigo-700 hover:bg-indigo-50 text-lg" onclick="showVal(8)">A ∪ B</button>
-                    <button class="val-btn border-indigo-300 text-indigo-700 hover:bg-indigo-50 text-lg" onclick="showVal(9)">A ∪ B'</button>
-                    <button class="val-btn border-indigo-300 text-indigo-700 hover:bg-indigo-50 text-lg" onclick="showVal(10)">A' ∪ B</button>
-                    <button class="val-btn border-indigo-300 text-indigo-700 hover:bg-indigo-50 text-lg" onclick="showVal(11)">A' ∪ B'</button>
+                    <button class="val-btn border-indigo-300 text-indigo-700 hover:bg-indigo-50 text-[1.1rem]" onclick="showVal(8)">A ∪ B</button>
+                    <button class="val-btn border-indigo-300 text-indigo-700 hover:bg-indigo-50 text-[1.1rem]" onclick="showVal(9)">A ∪ B'</button>
+                    <button class="val-btn border-indigo-300 text-indigo-700 hover:bg-indigo-50 text-[1.1rem]" onclick="showVal(10)">A' ∪ B</button>
+                    <button class="val-btn border-indigo-300 text-indigo-700 hover:bg-indigo-50 text-[1.1rem]" onclick="showVal(11)">A' ∪ B'</button>
                 </div>
               </div>
           </div>
@@ -221,7 +241,7 @@
 
     <div class="right-panel" id="stepsArea">
       <div id="practiceSelector" class="mb-6 bg-white p-5 rounded-2xl border-2 border-slate-200 shadow-md flex flex-col gap-3">
-        <label class="font-black text-slate-800 text-lg">選擇演練題庫：</label>
+        <label class="font-black text-slate-800 text-lg">選擇演練題庫 Selection：</label>
         <div class="flex gap-3">
             <select id="probSelect" class="flex-1 border-2 border-slate-300 rounded-xl p-3 text-lg text-slate-800 font-bold focus:outline-none focus:border-blue-500">
             <option value="GLASSES">隨機情境：戴眼鏡問題</option>
@@ -231,7 +251,7 @@
             <option value="T19">情境應用：生小孩-老大是男 (T19)</option>
             <option value="RANDOM">🎲 隨機抽題</option>
             </select>
-            <button class="btn bg-slate-800 text-white hover:bg-slate-700 py-2 px-6 text-xl" onclick="loadSelectedPractice()">載入</button>
+            <button class="btn bg-slate-800 text-white hover:bg-slate-700 py-2 px-6 text-[1.15rem]" onclick="loadSelectedPractice()">載入 Load</button>
         </div>
       </div>
 
@@ -359,7 +379,7 @@
 
       if (type === 'GLASSES') {
         const d = generateRandomGlassesData();
-        initProblem({ type: "NORMAL", context: `全班共有 <span class="text-blue-700">${d[0][0]}</span> 人，其中男生有 <span class="text-blue-700">${d[0][1]}</span> 人。已知全班戴眼鏡的學生有 <span class="text-blue-700">${d[1][0]}</span> 人，其中男生有戴眼鏡的有 <span class="text-blue-700">${d[1][1]}</span> 人。`, labels: LBL_GLASS, data: d, knowns: [[0,0], [0,1], [1,0], [1,1]], questions: GLASS_QUESTIONS });
+        initProblem({ type: "NORMAL", context: `全班共有 <span class="text-blue-700 font-bold">${d[0][0]}</span> 人，其中男生有 <span class="text-blue-700 font-bold">${d[0][1]}</span> 人。已知全班戴眼鏡的學生有 <span class="text-blue-700 font-bold">${d[1][0]}</span> 人，其中男生有戴眼鏡的有 <span class="text-blue-700 font-bold">${d[1][1]}</span> 人。`, labels: LBL_GLASS, data: d, knowns: [[0,0], [0,1], [1,0], [1,1]], questions: GLASS_QUESTIONS });
       } else if (type === 'ABSTRACT') { initProblem(generateRandomAbstractData()); } 
       else { initProblem(STATIC_PROBLEMS[type]); }
     }
@@ -376,7 +396,7 @@
       
       let html = `<p class="text-slate-800 mb-2 font-bold leading-relaxed">${prob.context}</p>`;
       if(prob.questions.length > 1) {
-        html += `<p class="font-bold text-blue-700 mt-3 text-xl">試求以下問題：</p><ul class="list-none pl-2 text-lg text-slate-700 space-y-2 mt-2">`;
+        html += `<p class="font-bold text-blue-700 mt-3 text-xl">試求以下問題 Task：</p><ul class="list-none pl-2 text-lg text-slate-700 space-y-2 mt-2">`;
         prob.questions.forEach((q, i) => html += `<li>${prob.questions.length > 1 ? `(${i+1}) ` : ''}${q.text}</li>`); html += `</ul>`;
       }
       document.getElementById('problemArea').innerHTML = html;
@@ -398,7 +418,7 @@
       const grid = document.getElementById('masterGrid'); const setArea = document.getElementById('setListingArea');
       if (currentProbMeta.type === 'SETS') {
           grid.style.display = 'none'; setArea.style.display = 'block'; 
-          setArea.innerHTML = `<div class="bg-indigo-50 border-2 border-indigo-200 p-6 rounded-2xl text-indigo-900 mt-5 text-lg leading-relaxed shadow-md"><div class="font-black text-indigo-800 mb-4 text-2xl flex items-center gap-3">🔍 樣本空間觀察區</div><ul id="setWatchList" class="space-y-5"></ul></div>`;
+          setArea.innerHTML = `<div class="bg-indigo-50 border-2 border-indigo-200 p-6 rounded-2xl text-indigo-900 mt-5 text-lg leading-relaxed shadow-md"><div class="font-black text-indigo-800 mb-4 text-2xl flex items-center gap-3">🔍 樣本空間觀察區 Observation</div><ul id="setWatchList" class="space-y-4"></ul></div>`;
           return;
       }
       grid.style.display = 'grid'; setArea.style.display = 'none'; grid.innerHTML = "";
@@ -457,16 +477,16 @@
 
     // --- 集合點選模式 (SETS) ---
     function renderSetSteps() {
-      document.getElementById('setWatchList').innerHTML = `<li><span class="font-black text-slate-800 text-xl">樣本空間 $S$</span><br> = { ${currentProbMeta.setSpace.join(', ')} }</li>`;
+      document.getElementById('setWatchList').innerHTML = `<li class="sets-list-item"><span class="font-black text-slate-800 text-xl sets-list-name">樣本空間 $S$</span><br> = { ${currentProbMeta.setSpace.join(', ')} }</li>`;
       renderSetSelection(getStepId(), getStepTitle(`求事件 A`), currentProbMeta.eventA_name, currentProbMeta.eventA_ans, 
         () => { 
-            document.getElementById('setWatchList').innerHTML += `<li><span class="font-black text-blue-700 text-xl">事件 A：${currentProbMeta.eventA_name}</span><br> = { ${currentProbMeta.eventA_ans.map(i=>currentProbMeta.setSpace[i]).join(', ')} }</li>`;
+            document.getElementById('setWatchList').innerHTML += `<li class="sets-list-item"><span class="font-black text-blue-700 text-xl sets-list-name">事件 A：${currentProbMeta.eventA_name}</span><br> = { ${currentProbMeta.eventA_ans.map(i=>currentProbMeta.setSpace[i]).join(', ')} }</li>`;
             renderSetSelection(getStepId(), getStepTitle(`求事件 B`), currentProbMeta.eventB_name, currentProbMeta.eventB_ans, 
             () => {
-                document.getElementById('setWatchList').innerHTML += `<li><span class="font-black text-rose-700 text-xl">事件 B：${currentProbMeta.eventB_name}</span><br> = { ${currentProbMeta.eventB_ans.map(i=>currentProbMeta.setSpace[i]).join(', ')} }</li>`;
+                document.getElementById('setWatchList').innerHTML += `<li class="sets-list-item"><span class="font-black text-rose-700 text-xl sets-list-name">事件 B：${currentProbMeta.eventB_name}</span><br> = { ${currentProbMeta.eventB_ans.map(i=>currentProbMeta.setSpace[i]).join(', ')} }</li>`;
                 renderSetSelection(getStepId(), getStepTitle(`求交集`), currentProbMeta.eventInt_name, currentProbMeta.eventInt_ans, 
                 () => {
-                    document.getElementById('setWatchList').innerHTML += `<li><span class="font-bold text-purple-700 text-xl">交集：${currentProbMeta.eventInt_name}</span><br> = { ${currentProbMeta.eventInt_ans.map(i=>currentProbMeta.setSpace[i]).join(', ')} }</li>`;
+                    document.getElementById('setWatchList').innerHTML += `<li class="sets-list-item"><span class="font-bold text-purple-700 text-xl sets-list-name">交集：${currentProbMeta.eventInt_name}</span><br> = { ${currentProbMeta.eventInt_ans.map(i=>currentProbMeta.setSpace[i]).join(', ')} }</li>`;
                     if(window.MathJax) MathJax.typesetPromise(); renderNextQuestion();
                 });
             });
@@ -482,11 +502,11 @@
 
     function renderSetSelection(stepId, title, evtName, correctIndices, nextFunc) {
        const card = createCard(stepId, title);
-       let html = `<div class="bg-indigo-50 p-4 text-indigo-900 font-bold text-xl mb-5 rounded-xl border border-indigo-200 shadow-inner">請選出「${evtName}」包含的元素：</div><div class="flex flex-wrap justify-center gap-4 my-5">`;
+       let html = `<div class="bg-indigo-50 p-4 text-indigo-900 font-bold text-lg mb-5 rounded-xl border border-indigo-200 shadow-inner">請選出「${evtName}」包含的元素：</div><div class="flex flex-wrap justify-center gap-4 my-5">`;
        currentProbMeta.setSpace.forEach((item, idx) => {
            html += `<button id="set-btn-${stepId}-${idx}" class="set-btn px-6 py-3 border-4 border-indigo-300 rounded-xl text-indigo-800 font-black text-xl bg-white hover:bg-indigo-50" onclick="toggleSetBtn('${stepId}', ${idx})">${item}</button>`;
        });
-       html += `</div><div id="set-hint-${stepId}" class="text-rose-600 text-lg hidden mb-5 text-center font-bold bg-rose-50 p-3 rounded-lg border border-rose-200"></div><button id="set-chk-${stepId}" class="btn btn-main">確認所選集合</button>`;
+       html += `</div><div id="set-hint-${stepId}" class="text-rose-600 text-lg hidden mb-5 text-center font-bold bg-rose-50 p-3 rounded-lg border border-rose-200"></div><button id="set-chk-${stepId}" class="btn btn-main">確認所選集合 OK</button>`;
        card.insertAdjacentHTML('beforeend', html); document.getElementById('stepsContainer').appendChild(card);
        
        document.getElementById(`set-chk-${stepId}`).onclick = () => {
@@ -498,16 +518,16 @@
 
     // --- 自動填入模式 (慢慢的) ---
     function renderStep1_AutoFill() {
-        const stepID = getStepId(); const card = createCard(stepID, getStepTitle("自動填入已知數據"));
+        const stepID = getStepId(); const card = createCard(stepID, getStepTitle("自動填入已知數據 Auto-Fill"));
         
-        let html = `<div class="bg-slate-50 p-4 rounded-xl mb-5 text-xl text-slate-700 leading-relaxed border-2 border-slate-200 flex items-center justify-center gap-3 font-bold shadow-inner" id="auto-loading-msg">
+        let html = `<div class="bg-slate-50 p-4 rounded-xl mb-5 text-lg text-slate-700 leading-relaxed border-2 border-slate-200 flex items-center justify-center gap-3 font-bold shadow-inner" id="auto-loading-msg">
             <span class="text-2xl animate-pulse">🤖</span> 系統正在慢慢為您讀取並填入題目的已知條件...
         </div><div class="flex flex-col gap-4 mb-3" id="auto-knowns-container">`;
         
         currentProbMeta.knowns.forEach((pos, i) => {
             const lbl = cleanHtml(currentProbMeta.labels[pos[0]][pos[1]]);
             html += `<div class="flex justify-between items-center bg-white p-4 rounded-xl border-2 border-slate-200 shadow-md opacity-0 transition-all duration-700 transform translate-y-6" id="auto-row-${i}">
-                <span class="text-xl font-bold text-slate-700 w-[60%] flex items-center gap-3"><span class="w-3.5 h-3.5 rounded-full bg-blue-500 inline-block"></span>${lbl}</span>
+                <span class="text-lg font-bold text-slate-700 w-[60%] flex items-center gap-3"><span class="w-3.5 h-3.5 rounded-full bg-blue-500 inline-block"></span>${lbl}</span>
                 <div class="font-black text-4xl text-blue-600 w-24 text-center bg-blue-50 py-2 rounded-lg border-2 border-blue-200">${currentData[pos[0]][pos[1]]}</div>
               </div>`;
         });
@@ -531,15 +551,15 @@
     // --- 手動填寫模式 ---
     function renderStep1_Manual() {
       stepCheckCounts.s1 = 0; currentFocusInputs = []; const stepID = getStepId();
-      const card = createCard(stepID, getStepTitle("填寫已知數量"));
+      const card = createCard(stepID, getStepTitle("填寫已知數量 Fill Knowns"));
       let html = `<div class="flex flex-col gap-4 mb-3">`;
-      if (currentProbMeta.task1Hint) html += `<div class="bg-yellow-50 p-5 rounded-2xl mb-5 text-xl text-yellow-900 border-l-8 border-yellow-400 leading-relaxed shadow-md">${currentProbMeta.task1Hint}</div>`;
+      if (currentProbMeta.task1Hint) html += `<div class="bg-yellow-50 p-5 rounded-2xl mb-5 text-lg text-yellow-900 border-l-8 border-yellow-400 leading-relaxed shadow-md">${currentProbMeta.task1Hint}</div>`;
 
       currentProbMeta.knowns.forEach((pos, i) => {
         currentFocusInputs.push(`in-s1-${i}`);
         const lbl = cleanHtml(currentProbMeta.labels[pos[0]][pos[1]]);
         html += `<div class="flex justify-between items-center bg-white hover:bg-slate-50 transition-colors p-4 rounded-xl border-2 border-slate-200 shadow-sm">
-            <span class="text-xl font-bold text-slate-700 w-[60%] flex items-center gap-3"><span class="w-3.5 h-3.5 rounded-full bg-blue-400 inline-block"></span>${lbl}</span>
+            <span class="text-lg font-bold text-slate-700 w-[60%] flex items-center gap-3"><span class="w-3.5 h-3.5 rounded-full bg-blue-400 inline-block"></span>${lbl}</span>
             <div class="flex items-center gap-3 w-[40%] justify-end">
               <input type="number" id="in-s1-${i}" class="input-box w-24" data-ans="${currentData[pos[0]][pos[1]]}" data-r="${pos[0]}" data-c="${pos[1]}" onfocus="cellFocus(${pos[0]},${pos[1]})" onblur="cellBlur(${pos[0]},${pos[1]})" onkeypress="handleEnter(event, document.getElementById('btn-s1-${i}'))">
               <button id="btn-s1-${i}" class="btn btn-check px-5 py-3" onclick="checkS1(${i})">確認</button>
@@ -568,13 +588,13 @@
     // --- 機率題：找LCM步驟 ---
     function renderStepLCM() {
       currentFocusInputs = ['in-lcm']; const stepID = getStepId();
-      const card = createCard(stepID, getStepTitle("尋找公分母"));
+      const card = createCard(stepID, getStepTitle("尋找公分母 Find LCM"));
       const lcmAns = currentProbMeta.fracData[0].num;
-      let html = `<div class="bg-blue-50 p-5 rounded-2xl mb-5 text-xl text-blue-900 leading-relaxed border-2 border-blue-200 shadow-inner">
+      let html = `<div class="bg-blue-50 p-5 rounded-2xl mb-5 text-lg text-blue-900 leading-relaxed border-2 border-blue-200 shadow-inner">
         <b>🎯 降維打擊第一步：</b><br>請觀察題目中所有的分數分母，找出它們的「最小公倍數」來當作總數。
       </div>
       <div class="flex justify-between items-center bg-white p-5 rounded-2xl border-2 border-slate-200 shadow-md">
-        <span class="text-xl font-bold text-slate-800 w-[60%] flex items-center gap-3"><span class="text-2xl">🌟</span> 最小公倍數 (LCM)</span>
+        <span class="text-lg font-bold text-slate-800 w-[60%] flex items-center gap-3"><span class="text-2xl">🌟</span> 最小公倍數 (LCM)</span>
         <div class="flex items-center gap-4 w-[40%] justify-end">
           <span class="font-bold text-slate-500 text-3xl">=</span>
           <input type="number" id="in-lcm" class="input-box w-24" onfocus="cellFocus(0,0)" onblur="cellBlur(0,0)" onkeypress="handleEnter(event, document.getElementById('btn-lcm'))">
@@ -595,14 +615,14 @@
 
     function renderStepExpand() {
       stepCheckCounts.s1 = 0; currentFocusInputs = []; const stepID = getStepId(); const lcm = currentProbMeta.lcm;
-      const card = createCard(stepID, getStepTitle("填寫擴分後的「分子」"));
-      let html = `<div class="bg-blue-50 p-5 rounded-2xl mb-5 text-xl text-blue-900 leading-relaxed border-2 border-blue-200 shadow-inner">
+      const card = createCard(stepID, getStepTitle("填寫擴分後的「分子」 Fill Numerators"));
+      let html = `<div class="bg-blue-50 p-5 rounded-2xl mb-5 text-lg text-blue-900 leading-relaxed border-2 border-blue-200 shadow-inner">
         <b>🎯 降維打擊第二步：</b><br>1. 包含總數 $1$ 也化成假分數。<br>2. 利用迪摩根定律：$P(A' \\cap B') = 1 - P(A \\cup B)$<br>3. <b>把擴分後的「分子」填入空格中！</b>
       </div><div class="flex flex-col gap-4 mb-3">`;
       currentProbMeta.fracData.forEach((f, i) => {
         currentFocusInputs.push(`in-s1-${i}`);
         html += `<div class="flex justify-between items-center bg-white hover:bg-slate-50 transition-colors p-4 rounded-xl border-2 border-slate-200 shadow-sm">
-            <span class="text-xl font-bold text-slate-700 w-[55%] pr-3 flex flex-col gap-2"><span>${f.label}：</span><span class="text-blue-700 text-2xl">\\( ${f.orig} = \\frac{?}{${lcm}} \\)</span></span>
+            <span class="text-lg font-bold text-slate-700 w-[55%] pr-3 flex flex-col gap-2"><span>${f.label}：</span><span class="text-blue-700 text-2xl">\\( ${f.orig} = \\frac{?}{${lcm}} \\)</span></span>
             <div class="flex items-center gap-3 w-[45%] justify-end">
               <input type="number" id="in-s1-${i}" class="input-box w-20" data-ans="${f.num}" data-r="${f.r}" data-c="${f.c}" onfocus="cellFocus(${f.r},${f.c})" onblur="cellBlur(${f.r},${f.c})" onkeypress="handleEnter(event, document.getElementById('btn-s1-${i}'))">
               <button id="btn-s1-${i}" class="btn btn-check px-4 py-2.5" onclick="checkS1_Abs(${i})">確認</button>
@@ -632,7 +652,7 @@
     function renderStep2() {
       stepCheckCounts.s2 = 0; const isAbs = currentProbMeta.type === 'ABSTRACT'; currentFocusInputs = [];
       const stepID = getStepId();
-      const card = createCard(stepID, getStepTitle(isAbs ? "推導剩餘格子的「分子」" : "推導剩餘格子")); 
+      const card = createCard(stepID, getStepTitle(isAbs ? "推導剩餘格子的「分子」 Solve Logic" : "推導剩餘格子 Solve Logic")); 
       let html = `<div class="flex flex-col gap-4 mb-3">`;
       let order = isAbs ? [ [0,2], [1,2], [2,0], [2,1], [1,1] ] : [];
       if(!isAbs) for(let r=0; r<3; r++) for(let c=0; c<3; c++) if(!gridState[r][c]) order.push([r,c]);
@@ -644,14 +664,14 @@
           if (isAbs) { const lcm = currentProbMeta.lcm; inputHtml = `<div class="flex items-center">${inputHtml} <span class="text-slate-500 font-black ml-3 text-2xl">/ ${lcm}</span></div>`; }
           html += `<div class="flex flex-col bg-white hover:bg-slate-50 transition-colors p-4 rounded-xl border-2 border-slate-200 shadow-sm relative overflow-hidden">
               <div class="flex justify-between items-center w-full relative z-10">
-                  <span class="text-xl font-bold text-slate-700 w-[35%]">${cleanLabel}：</span>
+                  <span class="text-lg font-bold text-slate-700 w-[35%]">${cleanLabel}：</span>
                   <div class="flex items-center gap-3 justify-end w-[65%]">
                      ${inputHtml}
                      <button id="btn-s2-${i}" class="btn btn-check px-4 py-3" onclick="checkS2(${i}, ${r}, ${c})">確認</button>
                      <button id="btn-hint-s2-${i}" class="btn btn-hint py-3" onclick="showMathHint(${i}, ${r}, ${c})">💡 提示</button>
                   </div>
               </div>
-              <div id="hint-s2-${i}" class="text-slate-800 text-xl font-bold hidden mt-4 w-full text-center bg-slate-100 p-3 rounded-xl border-2 border-slate-300 relative z-10 shadow-inner"></div>
+              <div id="hint-s2-${i}" class="text-slate-800 text-lg font-bold hidden mt-4 w-full text-center bg-slate-100 p-3 rounded-xl border-2 border-slate-300 relative z-10 shadow-inner"></div>
             </div>`;
       });
       html += `</div>`; card.insertAdjacentHTML('beforeend', html); document.getElementById('stepsContainer').appendChild(card); scrollToBottom(); setTimeout(focusNextInput, 100);
@@ -747,31 +767,31 @@
        const u = currentData[0][0], a = currentData[0][1], aP = currentData[0][2], b = currentData[1][0], bP = currentData[2][0];
        const c1 = currentData[1][1], c2 = currentData[1][2], c3 = currentData[2][1], c4 = currentData[2][2];
        
-       if(type===1) { document.getElementById('cell-0-0').classList.add('val-hl-purple'); msg.innerHTML = `總計區 $S = ${u}$`; }
+       if(type===1) { document.getElementById('cell-0-0').classList.add('val-hl-purple'); msg.innerHTML = `總計區 Total $S = ${u}$`; }
        if(type===2) { document.getElementById('cell-0-0').classList.add('val-hl-purple'); document.getElementById('cell-0-1').classList.add('val-hl-blue'); document.getElementById('cell-0-2').classList.add('val-hl-blue'); msg.innerHTML = `$S = A + A' \\rightarrow ${u} = ${a} + ${aP}$`; }
        if(type===3) { document.getElementById('cell-0-0').classList.add('val-hl-purple'); document.getElementById('cell-1-0').classList.add('val-hl-blue'); document.getElementById('cell-2-0').classList.add('val-hl-blue'); msg.innerHTML = `$S = B + B' \\rightarrow ${u} = ${b} + ${bP}$`; }
-       if(type===4) { document.getElementById('cell-0-0').classList.add('val-hl-purple'); document.getElementById('cell-1-1').classList.add('val-hl-blue'); document.getElementById('cell-1-2').classList.add('val-hl-blue'); document.getElementById('cell-2-1').classList.add('val-hl-blue'); document.getElementById('cell-2-2').classList.add('val-hl-blue'); msg.innerHTML = `核心四區 $\\rightarrow ${u} = ${c1} + ${c2} + ${c3} + ${c4}$`; }
-       if(type===5) { document.getElementById('cell-1-1').classList.add('val-hl-green'); msg.innerHTML = `完全符合 (交集) $= ${c1}$`; }
+       if(type===4) { document.getElementById('cell-0-0').classList.add('val-hl-purple'); document.getElementById('cell-1-1').classList.add('val-hl-blue'); document.getElementById('cell-1-2').classList.add('val-hl-blue'); document.getElementById('cell-2-1').classList.add('val-hl-blue'); document.getElementById('cell-2-2').classList.add('val-hl-blue'); msg.innerHTML = `核心四區 Core $\\rightarrow ${u} = ${c1} + ${c2} + ${c3} + ${c4}$`; }
+       if(type===5) { document.getElementById('cell-1-1').classList.add('val-hl-green'); msg.innerHTML = `完全符合 (交集 Intersect) $= ${c1}$`; }
        if(type===6) { document.getElementById('cell-1-2').classList.add('val-hl-orange'); document.getElementById('cell-2-1').classList.add('val-hl-orange'); msg.innerHTML = `僅一符合 $= ${c2} + ${c3}$`; }
-       if(type===7) { document.getElementById('cell-2-2').classList.add('val-hl-red'); msg.innerHTML = `完全不符 (外部) $= ${c4}$`; }
+       if(type===7) { document.getElementById('cell-2-2').classList.add('val-hl-red'); msg.innerHTML = `完全不符 (外部 Outer) $= ${c4}$`; }
        if(type===8) { 
            document.getElementById('cell-1-1').classList.add('val-hl-indigo'); document.getElementById('cell-1-2').classList.add('val-hl-indigo'); document.getElementById('cell-2-1').classList.add('val-hl-indigo');
-           msg.innerHTML = `聯集 $A \\cup B = A + B - A \\cap B = ${a} + ${b} - ${c1}$`; 
+           msg.innerHTML = `聯集 Union $A \\cup B = A + B - A \\cap B = ${a} + ${b} - ${c1}$`; 
            document.getElementById('lbl-0-1').insertAdjacentHTML('beforeend', `<div class="union-check">✓</div>`); document.getElementById('lbl-1-0').insertAdjacentHTML('beforeend', `<div class="union-check">✓</div>`);
        }
        if(type===9) { 
            document.getElementById('cell-1-1').classList.add('val-hl-indigo'); document.getElementById('cell-2-1').classList.add('val-hl-indigo'); document.getElementById('cell-2-2').classList.add('val-hl-indigo');
-           msg.innerHTML = `聯集 $A \\cup B' = A + B' - A \\cap B' = ${a} + ${bP} - ${c3}$`; 
+           msg.innerHTML = `聯集 Union $A \\cup B' = A + B' - A \\cap B' = ${a} + ${bP} - ${c3}$`; 
            document.getElementById('lbl-0-1').insertAdjacentHTML('beforeend', `<div class="union-check">✓</div>`); document.getElementById('lbl-2-0').insertAdjacentHTML('beforeend', `<div class="union-check">✓</div>`);
        }
        if(type===10) { 
            document.getElementById('cell-1-1').classList.add('val-hl-indigo'); document.getElementById('cell-1-2').classList.add('val-hl-indigo'); document.getElementById('cell-2-2').classList.add('val-hl-indigo');
-           msg.innerHTML = `聯集 $A' \\cup B = A' + B - A' \\cap B = ${aP} + ${b} - ${c2}$`; 
+           msg.innerHTML = `聯集 Union $A' \\cup B = A' + B - A' \\cap B = ${aP} + ${b} - ${c2}$`; 
            document.getElementById('lbl-0-2').insertAdjacentHTML('beforeend', `<div class="union-check">✓</div>`); document.getElementById('lbl-1-0').insertAdjacentHTML('beforeend', `<div class="union-check">✓</div>`);
        }
        if(type===11) { 
            document.getElementById('cell-1-2').classList.add('val-hl-indigo'); document.getElementById('cell-2-1').classList.add('val-hl-indigo'); document.getElementById('cell-2-2').classList.add('val-hl-indigo');
-           msg.innerHTML = `聯集 $A' \\cup B' = A' + B' - A' \\cap B' = ${aP} + ${bP} - ${c4}$`; 
+           msg.innerHTML = `聯集 Union $A' \\cup B' = A' + B' - A' \\cap B' = ${aP} + ${bP} - ${c4}$`; 
            document.getElementById('lbl-0-2').insertAdjacentHTML('beforeend', `<div class="union-check">✓</div>`); document.getElementById('lbl-2-0').insertAdjacentHTML('beforeend', `<div class="union-check">✓</div>`);
        }
        if(window.MathJax) MathJax.typesetPromise();
@@ -782,7 +802,7 @@
       if (currentQIndex >= currentProbMeta.questions.length) { document.getElementById('actionPanel').style.display = "block"; scrollToBottom(); return; }
       resetGridHighlight(); const q = currentProbMeta.questions[currentQIndex];
       
-      let stepTitle = currentProbMeta.questions.length > 1 ? `第 ${currentQIndex + 1} 題解答` : getStepTitle("求解機率");
+      let stepTitle = currentProbMeta.questions.length > 1 ? `第 ${currentQIndex + 1} 題解答 Solve Task` : getStepTitle("求解機率 Solve Prob.");
       if (currentProbMeta.questions.length > 1 && currentQIndex > 0) stepTitle = `<div class="step-title-num">${globalStepNum-1}.${currentQIndex+1}</div><span>第 ${currentQIndex + 1} 題解答</span>`;
       
       const stepID = `prob-${currentQIndex}`;
@@ -800,15 +820,15 @@
           numInputHtml = `<div class="flex items-center">${numInputHtml} <span class="text-slate-500 font-bold ml-3 text-2xl">/ ${lcm}</span></div>`;
       }
 
-      let hintBtnHtml = currentProbMeta.type !== 'SETS' ? `<button class="btn btn-hint ml-4 whitespace-nowrap py-3 px-5 text-xl" onclick="highlightErrorArea('DEN', ${q.cR}, ${q.cC})">💡 提示</button>` : '';
-      let numHintBtnHtml = currentProbMeta.type !== 'SETS' ? `<button id="btn-num-hint-${currentQIndex}" class="btn btn-hint ml-4 whitespace-nowrap py-3 px-5 text-xl" style="display:none;" onclick="highlightErrorArea('NUM', ${q.nR}, ${q.nC})">💡 提示</button>` : '';
+      let hintBtnHtml = currentProbMeta.type !== 'SETS' ? `<button class="btn btn-hint ml-4 whitespace-nowrap py-3 px-5 text-[1.1rem]" onclick="highlightErrorArea('DEN', ${q.cR}, ${q.cC})">💡 提示 Hint</button>` : '';
+      let numHintBtnHtml = currentProbMeta.type !== 'SETS' ? `<button id="btn-num-hint-${currentQIndex}" class="btn btn-hint ml-4 whitespace-nowrap py-3 px-5 text-[1.1rem]" style="display:none;" onclick="highlightErrorArea('NUM', ${q.nR}, ${q.nC})">💡 提示 Hint</button>` : '';
 
       let html = `
         <div class="bg-blue-50 border-l-8 border-blue-500 p-5 mb-6 text-xl text-blue-900 font-bold leading-relaxed rounded-r-xl shadow-md">${q.text}</div>
         <div class="flex flex-col items-center gap-5 bg-white p-6 rounded-2xl border-2 border-slate-200 shadow-md w-full max-w-xl mx-auto relative overflow-hidden">
           <div class="absolute top-0 left-0 w-1.5 h-full bg-slate-200"></div>
           <div class="flex w-full items-center justify-between px-3 relative z-10">
-             <span class="text-lg font-bold text-rose-700 text-right w-[45%] pr-4">分子 (${numLabel})：</span>
+             <span class="text-lg font-bold text-rose-700 text-right w-[45%] pr-4">分子 Numerator (${numLabel})：</span>
              <div class="flex items-center w-[55%]">
                 ${numInputHtml}
                 <button id="btn-chk-num-${currentQIndex}" class="btn btn-check px-5 py-3 ml-4" style="display:none;" onclick="chkNum(${currentQIndex})">確認</button>
@@ -817,7 +837,7 @@
           </div>
           <div class="w-full border-b-[4px] border-slate-300 my-2 relative z-10"></div>
           <div class="flex w-full items-center justify-between px-3 relative z-10">
-             <span class="text-lg font-bold text-blue-700 text-right w-[45%] pr-4">分母限縮 (${condLabel})：</span>
+             <span class="text-lg font-bold text-blue-700 text-right w-[45%] pr-4">分母限縮 Denominator (${condLabel})：</span>
              <div class="flex items-center w-[55%]">
                 ${denInputHtml}
                 <button id="btn-chk-den-${currentQIndex}" class="btn btn-check px-5 py-3 ml-4" onclick="chkDen(${currentQIndex})">確認</button>
@@ -875,7 +895,7 @@
 
        let html = `
        <div id="final-box-${idx}" class="flex flex-col items-center gap-4 bg-emerald-50 p-6 rounded-2xl border-2 border-emerald-400 mt-8 shadow-lg mx-auto max-w-xl w-full transition-all animate-pulse">
-          <span class="text-lg font-bold text-emerald-800 bg-emerald-200 px-5 py-2 rounded-full shadow-sm">✨ 最後一步：請化為「最簡分數」</span>
+          <span class="text-lg font-bold text-emerald-800 bg-emerald-200 px-5 py-2 rounded-full shadow-sm">✨ 最後一步：請化為「最簡分數」 Simplify</span>
           <div class="flex items-center justify-center gap-4 w-full mt-3">
              <span class="font-bold text-3xl text-emerald-900">${baseFracHtml}</span>
              <div class="flex flex-col items-center ml-2">
@@ -883,7 +903,7 @@
                 <div class="w-20 border-b-[4px] border-emerald-800 my-1.5"></div>
                 <input type="number" id="fn-den-${idx}" class="input-box mt-1.5 border-emerald-400 focus:border-emerald-600 focus:ring-emerald-300 text-2xl p-2 w-20" onkeypress="handleEnter(event, document.getElementById('btn-final-submit-${idx}'))">
              </div>
-             <button id="btn-final-submit-${idx}" class="btn btn-main bg-emerald-600 hover:bg-emerald-700 w-auto px-6 py-4 ml-4 text-xl" onclick="chkFinal(${idx})">送出解答</button>
+             <button id="btn-final-submit-${idx}" class="btn btn-main bg-emerald-600 hover:bg-emerald-700 w-auto px-6 py-4 ml-4 text-[1.1rem]" onclick="chkFinal(${idx})">送出解答 Submit</button>
           </div>
           <div id="fn-hint-${idx}" class="text-rose-600 text-lg font-bold hidden mt-4 text-center bg-rose-50 p-3 rounded-lg w-full border border-rose-200 shadow-inner"></div>
        </div>`;
@@ -925,7 +945,7 @@
                const ansHtml = `<div class="mb-5 w-full text-center overflow-x-auto mt-8">
                  <div class="text-xl font-black text-slate-800 bg-slate-50 p-6 rounded-2xl border-2 border-slate-200 shadow-md text-left w-full overflow-x-auto relative">
                  <div class="absolute top-0 left-0 w-3 h-full bg-emerald-500 rounded-l-2xl"></div>
-                 <div class="text-lg mb-4 text-slate-500 font-bold uppercase tracking-wider flex items-center gap-2"><span class="text-emerald-500 text-2xl">✔</span> 完整推導過程</div>
+                 <div class="text-lg mb-4 text-slate-500 font-bold uppercase tracking-wider flex items-center gap-2"><span class="text-emerald-500 text-2xl">✔</span> 完整推導過程 Solution</div>
                  <div class="mt-3 text-center text-2xl">$$${fStr}$$</div>
                </div></div>`;
                
@@ -937,8 +957,8 @@
                } else {
                    document.getElementById('actionPanel').style.display = "block"; scrollToBottom(); // 全部完成
                }
-           } else { playSound('wrong'); hint.innerHTML = `⚠️ 數值對了，但尚未化為「最簡分數」喔！ <br><span class="text-sm font-normal">提示：尋找 ${uNum} 和 ${uDen} 的最大公因數並約分。</span>`; hint.style.display = 'block'; }
-       } else { playSound('wrong'); hint.innerText = "⚠️ 數值不對喔，請再檢查一下計算！"; hint.style.display = 'block'; }
+           } else { playSound('wrong'); hint.innerHTML = `⚠️ 數值對了，但尚未化為「最簡分數」喔！ Simplify first.<br><span class="text-sm font-normal">提示：尋找 ${uNum} 和 ${uDen} 的最大公因數並約分。</span>`; hint.style.display = 'block'; }
+       } else { playSound('wrong'); hint.innerText = "⚠️ 數值不對喔，請再檢查一下計算！ Try again."; hint.style.display = 'block'; }
     }
   </script>
 </body>
